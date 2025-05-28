@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huesitos BerOl | Cocina Tradicional Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #B22222;
+            --secondary: #FFD700;
+            --accent: #2F4F4F;
+            --light: #FFF8F0;
+            --dark: #1A1A1A;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 8px 24px rgba(0,0,0,0.1);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .nav-main {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .nav-scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: calc(100vh - 80px);
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Reemplaza esta URL con una imagen de fondo real */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('data:image/jpeg;base64,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') center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(178,34,34,0.3);
+        }
+
+        .menu-section {
+            padding: 6rem 5%;
+        }
+
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .menu-info {
+            padding: 1.5rem;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .floating-cart {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(178,34,34,0.3);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .floating-cart:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: var(--dark);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            display: none; /* Hidden by default */
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+            display: none; /* Hidden by default */
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header button {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .modal-header button:hover {
+            color: var(--primary);
+        }
+
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-item button:hover {
+            opacity: 0.9;
+        }
+
+        .modal-footer {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-footer button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-footer button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(178,34,34,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+            flex-shrink: 0;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .social-item:hover {
+            background: rgba(178, 34, 34, 0.05);
+            color: var(--primary);
+        }
+
+        .social-item i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-main" aria-label="Navegación principal">
+        <div class="logo">Huesitos BerOl</div>
+        <div class="nav-links">
+            <a href="#menu">Menú</a>
+            <a href="javascript:void(0)" onclick="toggleReservation()">Reservas</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="hero" aria-label="Bienvenida">
+        <div class="hero-content">
+            <h1>Sabores Ancestrales Mexicanos</h1>
+            <p>Un deleite para el alma</p>
+            <button class="cta-button" onclick="toggleReservation()">Reservar Mesa</button>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section" aria-label="Nuestro menú">
+        <h2>Nuestro Menú</h2>
+        <div class="menu-grid">
+            <div class="menu-card" data-category="paquete-tradicional">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMz1DfRoBGq0jq-unMMcPMRsAQ7YLO4LnMI96G_=w134-h135-n-k-no-nu" alt="Paquete tradicional">
+                <div class="menu-info">
+                    <h3>Paquete tradicional</h3>
+                    <p>Corte de huesito tradicional de 12 piezas acompañado de 2 bolsitas de salsa, 2 bolsitas de verdura y limón</p>
+                    <div class="price-tag">$90.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paquete-individual">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMt06sJAloC3Swa0ZLUfPp_mJPcJi4339e6wT1u=w134-h168-n-k-no-nu" alt="Paquete individual">
+                <div class="menu-info">
+                    <h3>Paquete individual</h3>
+                    <p>Corte de huesito tradicional de 6 piezas acompañado de 1 bolsita de salsa, 1 bolsita de verdura y limón</p>
+                    <div class="price-tag">$75.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paquete-BerOl">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMnMByR-vnw8wtEXQdQdGq3uDESMjpsnlee-yai=w134-h224-n-k-no-nu" alt="Paquete BerOl">
+                <div class="menu-info">
+                    <h3>Paquete BerOl</h3>
+                    <p>Corte de huesito tradicional de 14 piezas acompañado de 2 bolsas de salsa, 2 bolsitas de verdura y limón</p>
+                    <div class="price-tag">$125.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paquete-familiar">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipONPbUmYXitepD1ygS1iE2DxBPL18H-mxwGITGO=w134-h224-n-k-no-nu" alt="Paquete Familiar">
+                <div class="menu-info">
+                    <h3>Paquete familiar</h3>
+                    <p>Corte de huesito tradicional de 18 piezas acompañado de 2 bolsitas de salsa, 2 bolsitas de verdura y limón</p>
+                    <div class="price-tag">$155.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paquete-amigo">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOn6qfijo9OyEFl_RwHaHcvydGksDkqJbMFE_QT=w134-h168-n-k-no-nu" alt="Paquete amigo">
+                <div class="menu-info">
+                    <h3>Paquete amigo</h3>
+                    <p>Corte de huesito tradicional de 20 piezas acompañado de 3 bolsas de salsa, 2 bolsas de verdura y limón</p>
+                    <div class="price-tag">$175.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paque-compartas">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOVkuxPg27QtcgRK0fEF2kfinHQNUCDwZcQrnHC=w134-h224-n-k-no-nu" alt="Paque-compartas">
+                <div class="menu-info">
+                    <h3>Paque-compartas</h3>
+                    <p>Corte de huesito tradicional de 24 piezas acompañado de 3 bolsas de salsa, 2 bolsas de verdura y limón</p>
+                    <div class="price-tag">$200.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="paquete-jumbo">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOzrVHnjrzrGQDW4v5YDSB_M6n-ql1SqZwymhvJ=w134-h224-n-k-no-nu" alt="Paquete Jumbo">
+                <div class="menu-info">
+                    <h3>Paquete jumbo</h3>
+                    <p>Corte de huesito tradicional de 35 piezas acompañado de 5 bolsas de salsa, 4 bolsas de verdura y limón</p>
+                    <div class="price-tag">$275.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="chamorro-estilo-BerOl">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOGyXZUL0vkiTtysYxAroLJNGP3gMLQypfJtQYH=w134-h224-n-k-no-nu" alt="Chamorro estilo BerOl">
+                <div class="menu-info">
+                    <h3>Chamorro Especial</h3>
+                    <p>Chamorro de cerdo estilo BerOl acompañado de una bolsa de salsa especial</p>
+                    <div class="price-tag">$99.00</div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="huesito-especial">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMN1kxtCgaPIJV3lYZuEBRAy8IQyAKf0lV7c-OS=w134-h224-n-k-no-nu" alt="Huesito especial">
+                <div class="menu-info">
+                    <h3>Huesito especial</h3>
+                    <p>corte de huesito especial estilo BerOl sujeto a existencia, preguntar en sucursal</p>
+                    <div class="price-tag">$130.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="menu-section" style="background: var(--light);" aria-label="Información de contacto">
+        <h2>Contacto</h2>
+        <div class="contact-container">
+            <div class="contact-card">
+                <h3>Visítanos</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p><br>Av.Andres Manuel Lopez Obrador mz.1 lt.1 Col.Lomas de San Sebastian<br>Los Reyes la Paz,Estado de México</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>AV.Principal y Nardos <br>San Jose Las palmas<br>Los Reyes la Paz,Estado de México</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1bE2ymJibr/" target="_blank" class="social-item">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/mendez.bertin?igsh=ZHo2ams3dmpsYw==" target="_blank" class="social-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://wa.me/p/8934997559903112/5215523544464" target="_blank" class="social-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-cart" onclick="toggleCart()" aria-label="Carrito de compras">
+        <i class="fas fa-shopping-basket"></i>
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <div class="modal" id="cartModal" aria-labelledby="cartModalTitle">
+        <div class="modal-header">
+            <h3 id="cartModalTitle">Tu Pedido</h3>
+            <button onclick="toggleCart()" aria-label="Cerrar">×</button>
+        </div>
+        <div class="modal-body" id="cartItems"></div>
+        <div class="modal-footer">
+            <p>Total: $<span id="cartTotal">0.00</span></p>
+            <button onclick="checkout()">Pagar Ahora</button>
+        </div>
+    </div>
+
+    <div class="modal" id="reservationModal" aria-labelledby="reservationModalTitle">
+        <div class="modal-header">
+            <h3 id="reservationModalTitle">Reservar Mesa</h3>
+            <button onclick="toggleReservation()" aria-label="Cerrar">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="reservationForm" onsubmit="handleReservation(event)">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="datetime">Fecha y Hora:</label>
+                    <input type="datetime-local" id="datetime" name="datetime" required>
+                </div>
+                <div class="form-group">
+                    <label for="people">Personas:</label>
+                    <select id="people" name="people" required>
+                        <option value="1">1 persona</option>
+                        <option value="2">2 personas</option>
+                        <option value="4">4 personas</option>
+                        <option value="6">6 personas</option>
+                        <option value="8">8 personas</option>
+                        <option value="10">10 personas</option>
+                    </select>
+                </div>
+                <button type="submit">Confirmar Reserva</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Función para agregar un item al carrito
+        function addToCart(itemName, price) {
+            const existingItem = cart.find(item => item.itemName === itemName);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ itemName, price, quantity: 1 });
+            }
+            updateCartUI();
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Función para eliminar un item del carrito
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Función para actualizar la interfaz del carrito
+        function updateCartUI() {
+            const countElement = document.getElementById('cartCount');
+            const cartItemsElement = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            
+            // Actualiza el contador del carrito flotante
+            countElement.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Renderiza los items en el modal del carrito
+            cartItemsElement.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div>
+                        <h4>${item.itemName}</h4>
+                        <p>${item.quantity} x $${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                </div>
+            `).join('');
+            
+            // Actualiza el total del carrito
+            cartTotalElement.textContent = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+        }
+
+        // Función genérica para mostrar/ocultar modales
+        function toggleModal(modalId) {
+            const modals = document.querySelectorAll('.modal');
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById('modalOverlay');
+
+            // Cierra cualquier otro modal abierto antes de abrir el nuevo
+            modals.forEach(m => {
+                if (m.id !== modalId && m.classList.contains('active')) {
+                    m.classList.remove('active');
+                }
+            });
+
+            // Alterna la clase 'active' para mostrar u ocultar el modal y el overlay
+            modal.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Funciones específicas para abrir/cerrar carrito y reservas
+        function toggleCart() { toggleModal('cartModal'); }
+        function toggleReservation() { toggleModal('reservationModal'); }
+
+        // --- LÓGICA PARA ENVIAR PEDIDOS AL GOOGLE SHEET ---
+        function checkout() {
+            if (cart.length === 0) {
+                alert('El carrito está vacío. ¡Añade algunos deliciosos huesitos para hacer un pedido!');
+                return;
+            }
+
+            const cartTotal = parseFloat(document.getElementById('cartTotal').textContent);
+            
+            // Prepara los detalles del pedido para enviar al Google Sheet
+            const orderItems = cart.map(item => `${item.itemName} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('; ');
+            
+            if (confirm(`Estás a punto de confirmar tu pedido con un total de $${cartTotal.toFixed(2)}.\n\n¿Quieres confirmar el pedido?`)) {
+                
+                // ¡IMPORTANTE! Reemplaza 'TU_WEB_APP_URL_AQUI' con la URL real de tu Google Apps Script
+                const googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycbwYQsjCW8FsuXeTTTNns73V85PUx6B95jVnApGj3J4N3KUxVIbXvF49zLZHhzPSNVEt/exec'; 
+
+                const formData = new FormData();
+                formData.append('total', cartTotal.toFixed(2));
+                formData.append('items', orderItems); 
+
+                fetch(googleAppsScriptUrl, {
+                    method: 'POST',
+                    body: formData 
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('¡Pedido confirmado! Hemos registrado tu solicitud. ¡Gracias por tu compra!');
+                        // Vacía el carrito solo si el envío fue exitoso
+                        cart = [];
+                        localStorage.removeItem('cart');
+                        updateCartUI(); 
+                        toggleCart(); 
+                    } else {
+                        alert('Hubo un error al procesar tu pedido. Por favor, inténtalo de nuevo.');
+                        console.error('Error del Apps Script:', data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('No se pudo conectar con el servicio de pedidos. Revisa tu conexión a internet o la URL del Apps Script.');
+                    console.error('Error al enviar el pedido:', error);
+                });
+
+            } else {
+                alert('Pedido cancelado. Puedes seguir añadiendo productos.');
+            }
+        }
+        // --- FIN DE LA LÓGICA DE PEDIDOS ---
+
+        // Función para manejar el envío del formulario de reserva
+        function handleReservation(event) {
+            event.preventDefault(); 
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const datetime = formData.get('datetime');
+            const people = formData.get('people');
+            
+            const selectedDate = new Date(datetime);
+            
+            if (selectedDate < new Date()) {
+                alert('¡Fecha y hora inválidas! Por favor, selecciona una fecha y hora futuras para tu reserva.');
+                return;
+            }
+            
+            toggleReservation(); 
+            alert(`¡Reserva confirmada para ${people} personas a nombre de ${name}!\nRecibirás una confirmación en ${email} pronto. ¡Te esperamos!`);
+            event.target.reset(); 
+        }
+
+        // Añade el botón "Añadir al carrito" a cada tarjeta de menú
+        document.querySelectorAll('.menu-card').forEach(card => {
+            const priceText = card.querySelector('.price-tag').textContent;
+            const price = parseFloat(priceText.replace('$', ''));
+            const itemName = card.querySelector('h3').textContent;
+            
+            const button = document.createElement('button');
+            button.textContent = 'Añadir al carrito';
+            button.className = 'add-to-cart-btn'; 
+            button.style.cssText = `
+                background: var(--primary);
+                color: white;
+                border: none;
+                padding: 0.8rem 1.5rem;
+                border-radius: 8px;
+                margin-top: 1rem;
+                cursor: pointer;
+                transition: var(--transition);
+                width: 100%;
+            `;
+            
+            button.onclick = () => {
+                addToCart(itemName, price);
+                button.textContent = '¡Añadido!';
+                setTimeout(() => button.textContent = 'Añadir al carrito', 1000);
+            };
+            
+            card.querySelector('.menu-info').appendChild(button);
+        });
+
+      
+        document.getElementById('modalOverlay').addEventListener('click', () => {
+            document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
+            document.getElementById('modalOverlay').classList.remove('active');
+        });
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('.nav-main').classList.toggle('nav-scrolled', window.scrollY > 50);
+        });
+
+        // Animación de aparición de las tarjetas del menú
+        document.querySelectorAll('.menu-card').forEach((card, index) => {
+            card.style.animation = `fadeIn 0.6s ${index * 0.1}s forwards`;
+            card.style.opacity = '0'; 
+        });
+
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#menu' || targetId === '#contacto') {
+                    const target = document.querySelector(targetId);
+                    target && target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Inicializa la interfaz del carrito al cargar la página
+        updateCartUI();
+    </script>
+</body>
+</html>
