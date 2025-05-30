@@ -363,7 +363,8 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid #ddd;
@@ -372,8 +373,14 @@
             transition: var(--transition);
         }
 
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
@@ -527,6 +534,45 @@
         .location-refresh:hover {
             background: #9a1c1c;
         }
+        
+        .whatsapp-reservation {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .whatsapp-reservation:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        .reservation-success {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background: #f0f9f0;
+            border-radius: 8px;
+            border: 1px solid #4CAF50;
+            margin-top: 1rem;
+        }
+        
+        .reservation-success i {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -551,7 +597,7 @@
         <h2>Nuestro Menú</h2>
         <div class="menu-grid">
             <div class="menu-card" data-category="paquete-tradicional">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipOVkuxPg27QtcgRK0fEF2kfinHQNUCDwZcQrnHC=w101-h168-n-k-no-nu" alt="Paquete tradicional">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMt06sJAloC3Swa0ZLUfPp_mJPcJi4339e6wT1u=w101-h126-n-k-no-nu" alt="Paquete tradicional">
                 <div class="menu-info">
                     <h3>Paquete tradicional</h3>
                     <p>Corte de huesito tradicional de 12 piezas acompañado de 2 bolsitas de salsa, 2 bolsitas de verdura y limón</p>
@@ -560,7 +606,7 @@
             </div>
 
             <div class="menu-card" data-category="paquete-individual">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipOzrVHnjrzrGQDW4v5YDSB_M6n-ql1SqZwymhvJ=w101-h168-n-k-no-nu" alt="Paquete individual">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOn6qfijo9OyEFl_RwHaHcvydGksDkqJbMFE_QT=w101-h126-n-k-no-nu" alt="Paquete individual">
                 <div class="menu-info">
                     <h3>Paquete individual</h3>
                     <p>Corte de huesito tradicional de 6 piezas acompañado de 1 bolsita de salsa, 1 bolsita de verdura y limón</p>
@@ -569,7 +615,7 @@
             </div>
 
             <div class="menu-card" data-category="paquete-BerOl">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipMnMByR-vnw8wtEXQdQdGq3uDESMjpsnlee-yai=w101-h168-n-k-no-nu" alt="Paquete BerOl">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOzrVHnjrzrGQDW4v5YDSB_M6n-ql1SqZwymhvJ=w101-h168-n-k-no-nu" alt="Paquete BerOl">
                 <div class="menu-info">
                     <h3>Paquete BerOl</h3>
                     <p>Corte de huesito tradicional de 14 piezas acompañado de 2 bolsas de salsa, 2 bolsitas de verdura y limón</p>
@@ -587,7 +633,7 @@
             </div>
 
             <div class="menu-card" data-category="paquete-amigo">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipMt06sJAloC3Swa0ZLUfPp_mJPcJi4339e6wT1u=w101-h126-n-k-no-nu" alt="Paquete amigo">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOVkuxPg27QtcgRK0fEF2kfinHQNUCDwZcQrnHC=w101-h168-n-k-no-nu" alt="Paquete amigo">
                 <div class="menu-info">
                     <h3>Paquete amigo</h3>
                     <p>Corte de huesito tradicional de 20 piezas acompañado de 3 bolsas de salsa, 2 bolsas de verdura y limón</p>
@@ -596,7 +642,7 @@
             </div>
 
             <div class="menu-card" data-category="paque-compartas">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipOn6qfijo9OyEFl_RwHaHcvydGksDkqJbMFE_QT=w101-h126-n-k-no-nu" alt="Paque-compartas">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipONPbUmYXitepD1ygS1iE2DxBPL18H-mxwGITGO=w101-h168-n-k-no-nu" alt="Paque-compartas">
                 <div class="menu-info">
                     <h3>Paque-compartas</h3>
                     <p>Corte de huesito tradicional de 24 piezas acompañado de 3 bolsas de salsa, 2 bolsas de verdura y limón</p>
@@ -605,7 +651,7 @@
             </div>
 
             <div class="menu-card" data-category="paquete-jumbo">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipMz1DfRoBGq0jq-unMMcPMRsAQ7YLO4LnMI96G_=w101-h101-n-k-no-nu" alt="Paquete Jumbo">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMnMByR-vnw8wtEXQdQdGq3uDESMjpsnlee-yai=w101-h168-n-k-no-nu" alt="Paquete Jumbo">
                 <div class="menu-info">
                     <h3>Paquete jumbo</h3>
                     <p>Corte de huesito tradicional de 35 piezas acompañado de 5 bolsas de salsa, 4 bolsas de verdura y limón</p>
@@ -614,7 +660,7 @@
             </div>
 
             <div class="menu-card" data-category="chamorro-estilo-BerOl">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipOGyXZUL0vkiTtysYxAroLJNGP3gMLQypfJtQYH=w101-h168-n-k-no-nu" alt="Chamorro estilo BerOl">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOrDnNpfJjVU0nHeBGtOGOluZ-HP_ZNFC52cTlq=w101-h84-n-k-no-nu" alt="Chamorro estilo BerOl">
                 <div class="menu-info">
                     <h3>Chamorro Especial</h3>
                     <p>Chamorro de cerdo estilo BerOl acompañado de una bolsa de salsa especial</p>
@@ -701,14 +747,14 @@
             <button onclick="toggleReservation()" aria-label="Cerrar">×</button>
         </div>
         <div class="modal-body">
-            <form id="reservationForm" onsubmit="handleReservation(event)">
+            <form id="reservationForm">
                 <div class="form-group">
-                    <label for="name">Nombre:</label>
+                    <label for="name">Nombre completo:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="phone">Teléfono:</label>
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label for="datetime">Fecha y Hora:</label>
@@ -725,7 +771,18 @@
                         <option value="10">10 personas</option>
                     </select>
                 </div>
-                <button type="submit" class="cta-button" style="width: 100%;">Confirmar Reserva</button>
+                <div class="form-group">
+                    <label for="comments">Comentarios adicionales:</label>
+                    <textarea id="comments" name="comments" placeholder="Ej: Mesa cerca de la ventana, cumpleaños, etc."></textarea>
+                </div>
+                <button type="button" class="whatsapp-reservation" onclick="sendReservation()">
+                    <i class="fab fa-whatsapp"></i> Enviar Reserva por WhatsApp
+                </button>
+                <div class="reservation-success" id="reservationSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>¡Reserva enviada con éxito!</h3>
+                    <p>Te contactaremos para confirmar tu reserva.</p>
+                </div>
             </form>
         </div>
     </div>
@@ -797,7 +854,10 @@
 
         // Funciones específicas para abrir/cerrar carrito y reservas
         function toggleCart() { toggleModal('cartModal'); }
-        function toggleReservation() { toggleModal('reservationModal'); }
+        function toggleReservation() { 
+            toggleModal('reservationModal');
+            document.getElementById('reservationSuccess').style.display = 'none';
+        }
 
         // Función para obtener la ubicación con alta precisión
         function requestLocation() {
@@ -939,6 +999,63 @@
             alert('¡Pedido enviado con éxito! Te contactaremos para confirmar tu pedido.');
         }
 
+        // Función para enviar reserva por WhatsApp
+        function sendReservation() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const datetime = document.getElementById('datetime').value;
+            const people = document.getElementById('people').value;
+            const comments = document.getElementById('comments').value;
+            
+            // Validar campos requeridos
+            if (!name || !phone || !datetime || !people) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+            
+            // Formatear fecha y hora
+            const reservationDate = new Date(datetime);
+            const formattedDate = reservationDate.toLocaleDateString('es-MX', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Crear mensaje para WhatsApp
+            let message = `¡Hola! Quiero hacer una reserva en Huesitos BerOl 🍖%0A%0A`;
+            message += `*Nombre:* ${name}%0A`;
+            message += `*Teléfono:* ${phone}%0A`;
+            message += `*Fecha y Hora:* ${formattedDate}%0A`;
+            message += `*Personas:* ${people}%0A`;
+            
+            if (comments) {
+                message += `*Comentarios:* ${comments}%0A`;
+            }
+            
+            message += `%0A¡Gracias! Espero su confirmación.`;
+            
+            // Número de WhatsApp del restaurante
+            const whatsappNumber = '5215523544464'; // Código de país + número
+            
+            // Crear enlace de WhatsApp
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Mostrar mensaje de éxito
+            document.getElementById('reservationSuccess').style.display = 'block';
+            
+            // Limpiar formulario después de 3 segundos
+            setTimeout(() => {
+                document.getElementById('reservationForm').reset();
+                toggleReservation();
+            }, 3000);
+        }
+
         // Asignar el evento click a cada tarjeta de menú para añadir al carrito
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.menu-card').forEach(card => {
@@ -964,27 +1081,6 @@
                 nav.classList.remove('nav-scrolled');
             }
         });
-
-        // Función para manejar el envío del formulario de reserva
-        function handleReservation(event) {
-            event.preventDefault(); // Evita el envío tradicional del formulario
-            const formData = new FormData(event.target);
-            const reservationDetails = {};
-            for (let [key, value] of formData.entries()) {
-                reservationDetails[key] = value;
-            }
-
-            // Mostrar alerta de confirmación
-            alert('Reserva confirmada para:\n' +
-                  `Nombre: ${reservationDetails.name}\n` +
-                  `Email: ${reservationDetails.email}\n` +
-                  `Fecha y Hora: ${new Date(reservationDetails.datetime).toLocaleString()}\n` +
-                  `Personas: ${reservationDetails.people}`);
-
-            // Cerrar el modal después de la reserva
-            toggleReservation();
-            event.target.reset(); // Limpia el formulario
-        }
     </script>
 </body>
 </html>
